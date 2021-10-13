@@ -32,17 +32,9 @@ f1=open("temp/data2.txt")
 
 for line in f1:
 
-    #line=line.strip()  # line is now a string without the initial and final "whitespaces"
-    split1=line.split(";") # split1 is a list composed of 2 strings
-
-    split2=split1[0].split(":")# split2 is a list composed of 2 strings
-    split3=split1[1].split(":")# split3 is a list composed of 2 strings
-    
-    x1=float(split2[1]) # We convert into float the 2nd element of split2
-    x2=float(split3[1]) # We convert into float the 2nd element of split3
-    
-    X1.append(x1)
-    X2.append(x2)
+    first,second=line.split(";") # split1 is a list composed of 2 strings
+    X1.append(float(first.split(":")[1]))
+    X2.append(float(second.split(":")[1]))
     
 f1.close()
 

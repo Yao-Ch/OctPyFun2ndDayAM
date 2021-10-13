@@ -28,18 +28,17 @@ import math
 
 X1=[]
 X2=[]
+
 f1=open("temp/data2.txt")
 
 for line in f1:
-
-    #line=line.strip()  # line is now a string without the initial and final "whitespaces"
-    split1=line.split(";") # split1 is a list composed of 2 strings
-
-    split2=split1[0].split(":")# split2 is a list composed of 2 strings
-    split3=split1[1].split(":")# split3 is a list composed of 2 strings
+    #	x1:0.27;x2:0.63
+    firstPos=line.index(":")
+    secondPos=line.index(";")
+    thirdPos=line.index(":", secondPos)
     
-    x1=float(split2[1]) # We convert into float the 2nd element of split2
-    x2=float(split3[1]) # We convert into float the 2nd element of split3
+    x1=float(line[firstPos+1:secondPos]) 
+    x2=float(line[thirdPos+1:]) 
     
     X1.append(x1)
     X2.append(x2)
@@ -56,5 +55,13 @@ for e in X1:
 Y2=[]
 for e in X2:
     Y2.append(math.sin(e))
+
+import matplotlib.pyplot as plt
+
+plt.plot(X1, Y1, label="Cosine")
+plt.plot(X2, Y2, label="Sine")
+plt.legend()
+plt.savefig("result.png")
+plt.show()
 
 
